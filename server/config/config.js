@@ -1,23 +1,21 @@
-{
-  "development": {
-    "username": "root",
-    "password": null,
-    "database": "database_development",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+const dotenv = require('dotenv');
+
+dotenv.config();
+
+module.exports = {
+  development: {
+    username: process.env.PG_USER,
+    password: process.env.PG_PASSWORD,
+    database: process.env.PG_DATABASE,
+    port: 5432,
+    dialect: 'postgres',
   },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+  test: {
+    use_env_variable: 'DATABASE_TEST_URL',
+    dialect: 'postgres',
   },
-  "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  }
-}
+  production: {
+    use_env_variable: 'DATABASE_URL',
+    dialect: 'postgres',
+  },
+};
